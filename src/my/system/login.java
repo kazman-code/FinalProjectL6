@@ -80,7 +80,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {
-        
+        //input validation
             String login = JOptionPane.showInputDialog("Input Password:");
             if(login == null) {
             	//if user cancels the password
