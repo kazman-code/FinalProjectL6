@@ -4,19 +4,28 @@
  */
 package my.system;
 
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  *
  * @author 35387
  */
 public class login extends javax.swing.JFrame {
+	private int attempts = 0;
+
 
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+        setupShowPassword();
+
     }
 
     /**
@@ -46,55 +55,60 @@ public class login extends javax.swing.JFrame {
 
         jLabelSearch.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabelSearch.setText("Login...");
+        
+        jPasswordField1 = new JPasswordField();
+        
+        jCheckBoxShowPassword = new JCheckBox("Show Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelExamEntry))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(jLabelExamEntry))
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(jLabelSearch, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(115)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(jPasswordField1, Alignment.TRAILING)
+        						.addComponent(jButtonLogin, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+        					.addGap(18)
+        					.addComponent(jCheckBoxShowPassword, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelExamEntry)
-                .addGap(40, 40, 40)
-                .addComponent(jLabelSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButtonLogin)
-                .addGap(85, 85, 85))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(jLabelExamEntry)
+        			.addGap(40)
+        			.addComponent(jLabelSearch)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jPasswordField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jCheckBoxShowPassword))
+        			.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+        			.addComponent(jButtonLogin)
+        			.addGap(85))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {
     	
-    	int attempts = 0;
-
-    	while (attempts < 3) {
-    	    String login = JOptionPane.showInputDialog("Input Password:");
-
-    	    if (login == null) {
-    	        return; // user pressed cancel
-    	    }
-
-    	    login = login.trim();
+    	 String login = new String(jPasswordField1.getPassword()).trim();
 
     	    if (login.isEmpty()) {
     	        JOptionPane.showMessageDialog(null, "Password cannot be empty");
-    	        continue;
+    	        return;
     	    }
 
     	    if (login.equals("root")) {
@@ -105,12 +119,28 @@ public class login extends javax.swing.JFrame {
 
     	    attempts++;
     	    JOptionPane.showMessageDialog(null, "Incorrect Password (" + attempts + "/3)");
-    	}
+    	    jPasswordField1.setText("");
 
-    	JOptionPane.showMessageDialog(null, "Too many failed attempts. Exiting.");
-    	System.exit(0);
+    	    if (attempts >= 3) {
+    	        JOptionPane.showMessageDialog(null, "Too many failed attempts. Exiting.");
+    	        System.exit(0);
+    	    }
+
+
 
     }
+    
+    private void setupShowPassword() {
+    	jCheckBoxShowPassword.addActionListener(e -> {
+            if (jCheckBoxShowPassword.isSelected()) {
+                jPasswordField1.setEchoChar((char) 0); // show
+            } else {
+                jPasswordField1.setEchoChar('*'); // hide
+            }
+        });
+    }
+
+   
    
 
     /**
@@ -152,5 +182,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabelExamEntry;
     private javax.swing.JLabel jLabelSearch;
-    // End of variables declaration//GEN-END:variables
+    private JPasswordField jPasswordField1;
+    private javax.swing.JCheckBox jCheckBoxShowPassword;
 }
