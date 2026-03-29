@@ -79,22 +79,28 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-         for (int i = 0; i <= 1; i++) {
-            String Login = JOptionPane.showInputDialog("Input Password:");
-
-            if (Login.equalsIgnoreCase("root")) {
-                options f = new options();
-                i = 1;
-                f.setVisible(true);
-                
-            } else {
-                i = 0;
-                JOptionPane.showMessageDialog(null, "Incorrect Password");
+    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {
+        
+            String login = JOptionPane.showInputDialog("Input Password:");
+            if(login == null) {
+            	//if user cancels the password
+            	return;
             }
+            if (login.isEmpty()){
+                
+            	JOptionPane.showMessageDialog(null, "Password cannot be Empty");
+            	return;                
+            } 
+            if (!login.equals("root")) {
+                JOptionPane.showMessageDialog(null, "Incorrect Password");
+                return;
+            }
+         // Correct password
+            options f = new options();
+            f.setVisible(true);
 
         }
-    }//GEN-LAST:event_jButtonLoginActionPerformed
+   
 
     /**
      * @param args the command line arguments
