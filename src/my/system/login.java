@@ -80,26 +80,37 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {
-        //input validation
-            String login = JOptionPane.showInputDialog("Input Password:");
-            if(login == null) {
-            	//if user cancels the password
-            	return;
-            }
-            if (login.isEmpty()){
-                
-            	JOptionPane.showMessageDialog(null, "Password cannot be Empty");
-            	return;                
-            } 
-            if (!login.equals("root")) {
-                JOptionPane.showMessageDialog(null, "Incorrect Password");
-                return;
-            }
-         // Correct password
-            options f = new options();
-            f.setVisible(true);
+    	
+    	int attempts = 0;
 
-        }
+    	while (attempts < 3) {
+    	    String login = JOptionPane.showInputDialog("Input Password:");
+
+    	    if (login == null) {
+    	        return; // user pressed cancel
+    	    }
+
+    	    login = login.trim();
+
+    	    if (login.isEmpty()) {
+    	        JOptionPane.showMessageDialog(null, "Password cannot be empty");
+    	        continue;
+    	    }
+
+    	    if (login.equals("root")) {
+    	        options f = new options();
+    	        f.setVisible(true);
+    	        return;
+    	    }
+
+    	    attempts++;
+    	    JOptionPane.showMessageDialog(null, "Incorrect Password (" + attempts + "/3)");
+    	}
+
+    	JOptionPane.showMessageDialog(null, "Too many failed attempts. Exiting.");
+    	System.exit(0);
+
+    }
    
 
     /**
