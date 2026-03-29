@@ -1,7 +1,17 @@
 
 package my.system;
+import java.awt.event.ActionEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Options extends javax.swing.JFrame {
+	
+	private javax.swing.JPanel headerPanel;
+	private javax.swing.JLabel headerLabel;
+	private javax.swing.JLabel welcomeLabel;
 
     
     public Options() {
@@ -21,8 +31,25 @@ public class Options extends javax.swing.JFrame {
         jButtonStudentSearch = new javax.swing.JButton();
         jLabelUpdate = new javax.swing.JLabel();
         jButtonStaffUpdate = new javax.swing.JButton();
-        jButtonStudentUpdate = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButtonStudentUpdate = new javax.swing.JButton();        
+        headerPanel = new javax.swing.JPanel();
+        headerLabel = new javax.swing.JLabel();
+        headerPanel.setBackground(new java.awt.Color(30, 144, 255)); // DodgerBlue
+        headerLabel.setFont(new java.awt.Font("Swis721 BlkCn BT", 1, 36));
+        headerLabel.setForeground(java.awt.Color.WHITE);
+        headerLabel.setText("GTI Exam Entry System");
+        
+        welcomeLabel = new javax.swing.JLabel();
+        welcomeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        welcomeLabel.setForeground(java.awt.Color.WHITE);
+        welcomeLabel.setText("Welcome, Administrator");
+
+        headerPanel.setLayout(new java.awt.BorderLayout());
+        headerPanel.add(headerLabel, java.awt.BorderLayout.CENTER);
+        headerPanel.add(welcomeLabel, java.awt.BorderLayout.SOUTH);
+
+
+       
         jLabelGrade = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -62,8 +89,7 @@ public class Options extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Swis721 BlkCn BT", 1, 36)); // NOI18N
-        jLabel1.setText("GTI Exam Entry System");
+       
 
         jLabelGrade.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabelGrade.setText("Grade...");
@@ -74,57 +100,60 @@ public class Options extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        JButton jButtonLogout = new JButton("Logout");
+        jButtonLogout.addActionListener(e -> jButtonLogoutActionPerformed(e));
+
+        headerPanel.add(jButtonLogout, java.awt.BorderLayout.EAST);
+        
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jButtonStaffUpdate)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButtonStudentUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabelUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jButtonStaffSearch)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonStudentSearch))
-                                .addComponent(jLabelGrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addContainerGap(133, Short.MAX_VALUE))
-        );
+        	    layout.createParallelGroup(Alignment.LEADING)
+        	        .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+        	        .addGroup(layout.createSequentialGroup()
+        	            .addGap(125)
+        	            .addGroup(layout.createParallelGroup(Alignment.LEADING)
+        	                .addComponent(jLabelSearch, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
+        	                .addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        	                    .addGroup(layout.createSequentialGroup()
+        	                        .addComponent(jButtonStaffUpdate)
+        	                        .addGap(18)
+        	                        .addComponent(jButtonStudentUpdate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	                    .addComponent(jLabelUpdate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        	                    .addGroup(layout.createSequentialGroup()
+        	                        .addComponent(jButtonStaffSearch)
+        	                        .addPreferredGap(ComponentPlacement.UNRELATED)
+        	                        .addComponent(jButtonStudentSearch))
+        	                    .addComponent(jLabelGrade, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	                .addComponent(jButton1))
+        	            .addContainerGap(133, Short.MAX_VALUE))
+        	);
+        
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(96, 96, 96)
-                .addComponent(jLabelSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonStaffSearch)
-                    .addComponent(jButtonStudentSearch))
-                .addGap(41, 41, 41)
-                .addComponent(jLabelUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonStaffUpdate)
-                    .addComponent(jButtonStudentUpdate))
-                .addGap(43, 43, 43)
-                .addComponent(jLabelGrade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(103, Short.MAX_VALUE))
-        );
+        	    layout.createParallelGroup(Alignment.LEADING)
+        	        .addGroup(layout.createSequentialGroup()
+        	            .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+        	            .addGap(40)
+        	            .addComponent(jLabelSearch)
+        	            .addPreferredGap(ComponentPlacement.RELATED)
+        	            .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        	                .addComponent(jButtonStaffSearch)
+        	                .addComponent(jButtonStudentSearch))
+        	            .addGap(41)
+        	            .addComponent(jLabelUpdate)
+        	            .addPreferredGap(ComponentPlacement.RELATED)
+        	            .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        	                .addComponent(jButtonStaffUpdate)
+        	                .addComponent(jButtonStudentUpdate))
+        	            .addGap(43)
+        	            .addComponent(jLabelGrade)
+        	            .addPreferredGap(ComponentPlacement.RELATED)
+        	            .addComponent(jButton1)
+        	            .addContainerGap(50, Short.MAX_VALUE))
+        	);
+        getContentPane().setLayout(layout);
 
         pack();
     }
@@ -158,23 +187,19 @@ public class Options extends javax.swing.JFrame {
         f0.setVisible(true);
         this.dispose();
     }
+    private void jButtonLogoutActionPerformed(ActionEvent evt) {
+        new Login().setVisible(true);
+        this.dispose();
+    }
+  
 
-    
-    
-       
-      
-       
-    
-
-   
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonStaffSearch;
     private javax.swing.JButton jButtonStaffUpdate;
     private javax.swing.JButton jButtonStudentSearch;
     private javax.swing.JButton jButtonStudentUpdate;
-    private javax.swing.JLabel jLabel1;
+    
     private javax.swing.JLabel jLabelGrade;
     private javax.swing.JLabel jLabelSearch;
     private javax.swing.JLabel jLabelUpdate;
-   
 }
