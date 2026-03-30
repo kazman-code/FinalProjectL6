@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ExamEntry extends javax.swing.JFrame {
 private Student currentStudent;
@@ -95,91 +98,100 @@ private Student currentStudent;
                 jToggleButton1ActionPerformed(evt);
             }
         });
+        
+        jButtonClear = new javax.swing.JButton();
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldAssignment2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jComboBoxModule, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(51, 51, 51)
-                                            .addComponent(jTextFieldExam, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(105, 105, 105)
-                                            .addComponent(jTextFieldStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jButtonAdd))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldAssignment1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonSearch))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(29)
+        							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(layout.createSequentialGroup()
+        									.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        											.addGroup(layout.createSequentialGroup()
+        												.addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+        												.addGap(51)
+        												.addComponent(jTextFieldExam, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+        											.addGroup(layout.createSequentialGroup()
+        												.addGap(105)
+        												.addComponent(jTextFieldStudentName, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
+        										.addComponent(jComboBoxModule, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
+        									.addGap(0, 4, Short.MAX_VALUE))
+        								.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        									.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+        									.addPreferredGap(ComponentPlacement.UNRELATED)
+        									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(jTextFieldAssignment1, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+        										.addComponent(jTextFieldAssignment2, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+        									.addGap(41))))
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(23)
+        							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        								.addComponent(jLabel1)
+        								.addComponent(jLabel4))
+        							.addGap(18)
+        							.addComponent(jButtonAdd)
+        							.addPreferredGap(ComponentPlacement.UNRELATED)
+        							.addComponent(jButtonClear)))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(layout.createSequentialGroup()
+        							.addGap(41)
+        							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
+        						.addComponent(jButtonSearch)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(98)
+        					.addComponent(jToggleButton1, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearch))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxModule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldAssignment1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldAssignment2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldExam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(62, 62, 62)
-                        .addComponent(jButtonAdd))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(31, 31, 31))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(16)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextFieldStudentName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jButtonSearch))
+        			.addGap(39)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jComboBoxModule, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel4))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(131)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jLabel1)
+        						.addComponent(jTextFieldAssignment1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jLabel2)
+        						.addComponent(jTextFieldAssignment2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        					.addGap(15)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jTextFieldExam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabel3))
+        					.addGap(62)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jButtonAdd)
+        						.addComponent(jButtonClear)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(18)
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)))
+        			.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+        			.addComponent(jToggleButton1)
+        			.addGap(31))
         );
-
+        getContentPane().setLayout(layout);
         pack();
     }
 
@@ -187,58 +199,70 @@ private Student currentStudent;
         
     }
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+        //VALIDATION
+
+        // 1. Student must be selected
         if (currentStudent == null || currentStudent.getStudent_id() == 0) {
-    JOptionPane.showMessageDialog(null, "Please search for and select a student before submitting.");
-    return;
-}
-        
-        
+            JOptionPane.showMessageDialog(this, "Please search for a student first.");
+            return;
+        }
 
-        String moduleName = (String) jComboBoxModule.getSelectedItem();
-        double assignment_1 = Double.parseDouble(jTextFieldAssignment1.getText());
-        double assignment_2 = Double.parseDouble(jTextFieldAssignment2.getText());
-        double exam = Double.parseDouble(jTextFieldExam.getText());
-        double overall = assignment_1 + assignment_2 + exam;
-        
-        // Get input from search field
-String studentNameInput = jTextFieldStudentName.getText().trim();
+        // 2. Module must be selected
+        if (jComboBoxModule.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Please select a module.");
+            return;
+        }
 
-// Check if it's empty
-if (studentNameInput.isEmpty()) {
-    JOptionPane.showMessageDialog(null, "Please enter a student name to search.");
-    return;
-}
-        
-        
-        
-        if (currentStudent.getStudent_id() == 0) {  // Assuming default is 0 if not set
-    JOptionPane.showMessageDialog(null, "Please search for and select a student before submitting.");
-    return;
-}
-        
-          if (assignment_1 < 0 || assignment_1 > 20) {
-    JOptionPane.showMessageDialog(null, "Assignment 1 must be between 0 and 20.");
-    return;
-}
+        // 3. Fields must not be empty
+        if (jTextFieldAssignment1.getText().trim().isEmpty() ||
+            jTextFieldAssignment2.getText().trim().isEmpty() ||
+            jTextFieldExam.getText().trim().isEmpty()) {
 
-if (assignment_2 < 0 || assignment_2 > 20) {
-    JOptionPane.showMessageDialog(null, "Assignment 2 must be between 0 and 20.");
-    return;
-}
+            JOptionPane.showMessageDialog(this, "Please fill in all assessment fields.");
+            return;
+        }
 
-if (exam < 0 || exam > 60) {
-    JOptionPane.showMessageDialog(null, "Exam must be between 0 and 60.");
-    return;
-}
+        // 4. Fields must be numeric
+        double assignment_1, assignment_2, exam;
 
-        // Validation: Ensure the inputs are not empty
-        // Proceed to insert the grades into the database
         try {
-            // Connect to database
-        	Connection conn = DatabaseConnection.getConnection();
-                   
+            assignment_1 = Double.parseDouble(jTextFieldAssignment1.getText().trim());
+            assignment_2 = Double.parseDouble(jTextFieldAssignment2.getText().trim());
+            exam = Double.parseDouble(jTextFieldExam.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Assessment fields must be numbers only.");
+            return;
+        }
 
+        // 5. Range validation
+        if (assignment_1 < 0 || assignment_1 > 20) {
+            JOptionPane.showMessageDialog(this, "Assignment 1 must be between 0 and 20.");
+            return;
+        }
+
+        if (assignment_2 < 0 || assignment_2 > 20) {
+            JOptionPane.showMessageDialog(this, "Assignment 2 must be between 0 and 20.");
+            return;
+        }
+
+        if (exam < 0 || exam > 60) {
+            JOptionPane.showMessageDialog(this, "Exam must be between 0 and 60.");
+            return;
+        }
+
+        // END OF VALIDATION
+
+
+        // Calculate overall result
+        double overall = assignment_1 + assignment_2 + exam;
+        String moduleName = (String) jComboBoxModule.getSelectedItem();
+
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+
+            // Check if assessment already exists
             String checkSql = "SELECT * FROM assessment WHERE student_id = ? AND module_name = ?";
             PreparedStatement checkPrest = conn.prepareStatement(checkSql);
             checkPrest.setInt(1, currentStudent.getStudent_id());
@@ -247,7 +271,7 @@ if (exam < 0 || exam > 60) {
             ResultSet checkRs = checkPrest.executeQuery();
 
             if (checkRs.next()) {
-                // Assessment exists --> UPDATE it
+                // UPDATE existing record
                 String updateSql = "UPDATE assessment SET assignment_1 = ?, assignment_2 = ?, exam = ?, result = ? "
                         + "WHERE student_id = ? AND module_name = ?";
 
@@ -260,12 +284,12 @@ if (exam < 0 || exam > 60) {
                 updatePrest.setString(6, moduleName);
 
                 updatePrest.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Assessment updated successfully for " + currentStudent.getFirst_name());
+                JOptionPane.showMessageDialog(this, "Assessment updated successfully for " + currentStudent.getFirst_name());
 
                 updatePrest.close();
 
             } else {
-                // No existing assessment --> INSERT new one
+                // INSERT new record
                 String insertSql = "INSERT INTO assessment (assignment_1, assignment_2, exam, result, module_name, student_id) "
                         + "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -278,7 +302,7 @@ if (exam < 0 || exam > 60) {
                 insertPrest.setInt(6, currentStudent.getStudent_id());
 
                 insertPrest.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Assessment added successfully for " + currentStudent.getFirst_name());
+                JOptionPane.showMessageDialog(this, "Assessment added successfully for " + currentStudent.getFirst_name());
 
                 insertPrest.close();
             }
@@ -289,12 +313,12 @@ if (exam < 0 || exam > 60) {
 
         } catch (Exception e) {
             e.printStackTrace();
-           
+            JOptionPane.showMessageDialog(this, "Error saving assessment.");
         }
-         jButtonSearchActionPerformed(null);
 
+        // Refresh the student info panel
+        jButtonSearchActionPerformed(null);
     }
-
     private void jTextFieldStudentNameActionPerformed(java.awt.event.ActionEvent evt) {
         
     }
@@ -430,6 +454,18 @@ if (exam < 0 || exam > 60) {
             }
         });
     }
+    
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        clearForm();
+    }
+    
+    private void clearForm() {
+        jTextFieldAssignment1.setText("");
+        jTextFieldAssignment2.setText("");
+        jTextFieldExam.setText("");
+        jTextAreaInfo.setText("");
+        jComboBoxModule.setSelectedIndex(-1);
+    }
 
   
     private javax.swing.JButton jButtonAdd;
@@ -446,5 +482,6 @@ if (exam < 0 || exam > 60) {
     private javax.swing.JTextField jTextFieldExam;
     private javax.swing.JTextField jTextFieldStudentName;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton jButtonClear;
  
 }
