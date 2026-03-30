@@ -17,7 +17,7 @@ The project allows users to:
 
   How to Run the Project
   1.Clone this repository
-  git clone https://github.com/yourusername/yourrepo.git
+  git clone https://github.com/kazman-code/FinalProjectL6.git
 
  2.Import the project into Eclipse
     Open Eclipse
