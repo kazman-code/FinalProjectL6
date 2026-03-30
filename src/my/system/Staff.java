@@ -9,14 +9,20 @@ package my.system;
  * @author 35387
  */
 public class Staff extends Person  {
+	//Holds unique to staff information
+	
     
     private int staff_id;
+    
+    public Staff() {
+        super();   // calls Person() constructor
+    }
    
     
-     public Staff(String first_name){
-        this.first_name=first_name;
-        
+    public Staff(String first_name){
+        super.setFirst_name(first_name);
     }
+    
      public Staff(int staff_id){
         this.staff_id=staff_id;
         

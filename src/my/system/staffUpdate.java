@@ -2,18 +2,18 @@
 package my.system;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.swing.JOptionPane;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class staffUpdate extends javax.swing.JFrame {
-
+	
 
 
     public staffUpdate() {
@@ -25,7 +25,9 @@ public class staffUpdate extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
+    
 
    
     @SuppressWarnings("unchecked")
@@ -69,7 +71,7 @@ public class staffUpdate extends javax.swing.JFrame {
             }
         });
 
-
+        //if the back button is pressed it closes the current window
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelStaffName.setText("Staff Name");
@@ -80,7 +82,8 @@ public class staffUpdate extends javax.swing.JFrame {
                 jButtonSearchActionPerformed(evt);
             }
         });
-
+        
+        //sets label text
         jLabelStaffID.setText("Staff ID");
 
         jLabelFirstName.setText("First Name");
@@ -130,17 +133,19 @@ public class staffUpdate extends javax.swing.JFrame {
                 jButtonBackActionPerformed(evt);
             }
         });
+        
+        JLabel lblNewLabel = new JLabel("Search by ID");
+        
+        jTextFieldID = new JTextField();
+        jTextFieldID.setColumns(10);
 
+        //layouts the gui
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addGap(24)
         			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jLabelStaffName)
-        					.addGap(36)
-        					.addComponent(jTextFieldStaffName, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(jLabelDateOfBirth, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
@@ -168,13 +173,18 @@ public class staffUpdate extends javax.swing.JFrame {
         						.addComponent(jTextFieldEmail)
         						.addComponent(jTextFieldPhoneNumber)
         						.addComponent(jTextFieldDateOfBirth)
-        						.addComponent(jTextFieldPPSN))))
-        			.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(jTextFieldPPSN)))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jButtonSearch)
-        					.addGap(102))
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabelStaffName)
+        						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+        					.addGap(18)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(jTextFieldID)
+        						.addComponent(jTextFieldStaffName, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))))
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
         					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(jButtonBack)
         						.addGroup(layout.createParallelGroup(Alignment.LEADING)
@@ -182,17 +192,29 @@ public class staffUpdate extends javax.swing.JFrame {
         							.addComponent(jButtonDelete)
         							.addComponent(jButtonUpdate)
         							.addComponent(jButtonClear)))
-        					.addGap(28))))
+        					.addGap(28))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(19)
+        					.addComponent(jButtonSearch)
+        					.addContainerGap())))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(35)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabelStaffName)
-        				.addComponent(jTextFieldStaffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jButtonSearch))
-        			.addGap(32)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(jTextFieldStaffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(jLabelStaffName))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblNewLabel)
+        						.addComponent(jTextFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(26)
+        					.addComponent(jButtonSearch)))
+        			.addGap(39)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabelStaffID)
         				.addComponent(jTextFieldStaffID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -248,37 +270,66 @@ public class staffUpdate extends javax.swing.JFrame {
         pack();
     }
 
-    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {
-        Staff s = new Staff(jTextFieldStaffName.getText());
-        
+   //searches for a staff member
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {                                              
+
+        String idInput = jTextFieldID.getText().trim();          //search-by-ID field
+        String nameInput = jTextFieldStaffName.getText().trim(); //search-by-name field
+
         try {
-            
-        	Connection conn = DatabaseConnection.getConnection();
+        	//Database Connection Code
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement prest = null;
 
-            PreparedStatement prest;
+            //serach by id
+            if (!idInput.isEmpty()) {
 
-            String sql = "SELECT * FROM staff WHERE first_name LIKE  ?";
+                int staffID;
+                try {
+                    staffID = Integer.parseInt(idInput);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Staff ID must be a number.");
+                    return;
+                }
 
-            prest = conn.prepareStatement(sql);
-            prest.setString(1, s.getFirst_name() + "%");
+                String sql = "SELECT * FROM staff WHERE staff_id = ?";
+                prest = conn.prepareStatement(sql);
+                prest.setInt(1, staffID);
+            }
+
+            // search by name
+            else if (!nameInput.isEmpty()) {
+
+                String sql = "SELECT * FROM staff WHERE first_name LIKE ?";
+                prest = conn.prepareStatement(sql);
+                prest.setString(1, nameInput + "%");
+            }
+
+            // if nothing is entered
+            else {
+                JOptionPane.showMessageDialog(this, "Enter a name or ID to search.");
+                return;
+            }
 
             ResultSet rs = prest.executeQuery();
 
-            String info = "";
-            while (rs.next()) {
-                System.out.println("");
-                s.setStaff_id(rs.getInt(1));
-                s.setFirst_name(rs.getString(2));
-                s.setSurname(rs.getString(3));
-                s.setAddress_line1(rs.getString(4));
-                s.setAddress_line2(rs.getString(5));
-                s.setCounty(rs.getString(6));
-                s.setEircode(rs.getString(7));
-                s.setEmail(rs.getString(8));
-                s.setPhone_number(rs.getString(9));
-                s.setDate_of_birth(rs.getString(10));
-                s.setPPSN(rs.getString(11));
-                jTextFieldStaffID.setText(Integer.toString(s.getStaff_id()));
+            if (rs.next()) {
+
+                Staff s = new Staff();
+                s.setStaff_id(rs.getInt("staff_id"));
+                s.setFirst_name(rs.getString("first_name"));
+                s.setSurname(rs.getString("surname"));
+                s.setAddress_line1(rs.getString("address_line1"));
+                s.setAddress_line2(rs.getString("address_line2"));
+                s.setCounty(rs.getString("county"));
+                s.setEircode(rs.getString("eircode"));
+                s.setEmail(rs.getString("email"));
+                s.setPhone_number(rs.getString("phone_number"));
+                s.setDate_of_birth(rs.getString("date_of_birth"));
+                s.setPPSN(rs.getString("ppsn"));
+
+                // Fill GUI fields
+                jTextFieldStaffID.setText(String.valueOf(s.getStaff_id()));
                 jTextFieldFirstName.setText(s.getFirst_name());
                 jTextFieldSurname.setText(s.getSurname());
                 jTextFieldAddressLine1.setText(s.getAddress_line1());
@@ -290,9 +341,12 @@ public class staffUpdate extends javax.swing.JFrame {
                 jTextFieldDateOfBirth.setText(s.getDate_of_birth());
                 jTextFieldPPSN.setText(s.getPPSN());
 
+            } else {
+                JOptionPane.showMessageDialog(this, "No staff found.");
             }
-            prest.close();
+
             rs.close();
+            prest.close();
             conn.close();
 
         } catch (Exception e) {
@@ -356,23 +410,24 @@ public class staffUpdate extends javax.swing.JFrame {
         
     }
 
+    //deletes a staff member
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         Staff s = new Staff(jTextFieldStaffName.getText());
         
         s.setStaff_id(Integer.parseInt(jTextFieldStaffID.getText()));
         s.setFirst_name(jTextFieldFirstName.getText());
-        
+        //confirms if you want to delete chosen staff member
           int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete " + s.getFirst_name()+ " from "
                 + "your records");
 
         if (confirm == 0) {
             System.out.println("confirming delete");
              try {
-            
+            	 //database connection
             	 Connection conn = DatabaseConnection.getConnection();
 
             PreparedStatement prest;
-
+            //SQL code
             String sql = "DELETE FROM staff WHERE staff_id= ?";
                     
 
@@ -381,6 +436,7 @@ public class staffUpdate extends javax.swing.JFrame {
             
             int del = prest.executeUpdate();
             JOptionPane.showMessageDialog(this, "Staff deleted successfully.");
+            //Clears all fields once staff is deleted
             clearForm();
 
                               
@@ -394,6 +450,7 @@ public class staffUpdate extends javax.swing.JFrame {
         }
     }
 
+    //adds a staff member
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {
     	if (!validateFields()) {
     	    return;
@@ -414,11 +471,12 @@ public class staffUpdate extends javax.swing.JFrame {
        
         
          try {
-            
+            //database connection
         	 Connection conn = DatabaseConnection.getConnection();
 
             PreparedStatement prest;
-
+            
+            //SQL code
             String sql= "INSERT INTO staff " +
 "                           (staff_id,first_name,surname,address_line1,address_line2,county,eircode,email,phone_number,date_of_birth,ppsn)" +
 "                           VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -454,6 +512,7 @@ public class staffUpdate extends javax.swing.JFrame {
         }
     }
 
+    //returns to previous pages and closes the current window
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {
     	Options opt = new Options();
     	opt.setVisible(true);
@@ -485,6 +544,7 @@ public class staffUpdate extends javax.swing.JFrame {
         });
     }
     
+    //This is used to clear the fields
     private void clearForm() {
         jTextFieldStaffID.setText("");
         jTextFieldStaffName.setText("");
@@ -542,7 +602,7 @@ public class staffUpdate extends javax.swing.JFrame {
         clearForm();
     }
 
-   
+   //Variable Declaration
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDelete;
@@ -558,6 +618,7 @@ public class staffUpdate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPPSN;
     private javax.swing.JLabel jLabelPhoneNumber;
     private javax.swing.JLabel jLabelStaffID;
+    private javax.swing.JLabel jLabelStaffIDSearch;
     private javax.swing.JLabel jLabelStaffName;
     private javax.swing.JLabel jLabelSurname;
     private javax.swing.JTextField jTextFieldAddressLine1;
@@ -571,6 +632,8 @@ public class staffUpdate extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPhoneNumber;
     private javax.swing.JTextField jTextFieldStaffID;
     private javax.swing.JTextField jTextFieldStaffName;
+    private javax.swing.JTextField jTextFieldStaffIDSearch;
     private javax.swing.JTextField jTextFieldSurname;
     private javax.swing.JButton jButtonClear;
+    private JTextField jTextFieldID;
 }

@@ -2,12 +2,10 @@
 package my.system;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class studentSearchFrame extends javax.swing.JFrame {
@@ -16,6 +14,7 @@ public class studentSearchFrame extends javax.swing.JFrame {
         initComponents();
         
         try {
+        	//Database connection code
             Connection conn = DatabaseConnection.getConnection();
             System.out.println("Connected!");
         } catch (Exception e) {
@@ -135,16 +134,15 @@ public class studentSearchFrame extends javax.swing.JFrame {
     private void jTextFieldStudentNameActionPerformed(java.awt.event.ActionEvent evt) {
        
     }
+    
 
+    //Searches for a student
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {
-         Student st = new Student(jTextFieldStudentName.getText());
-
-      
+         Student st = new Student(jTextFieldStudentName.getText());      
 
         try {
            
         	Connection conn = DatabaseConnection.getConnection();
-
              PreparedStatement prest;
 
             String sql = "SELECT * FROM student WHERE first_name LIKE  ?";
@@ -152,6 +150,7 @@ public class studentSearchFrame extends javax.swing.JFrame {
             prest.setString(1, st.getFirst_name()+"%" );
             ResultSet rs = prest.executeQuery();
 
+            //gets student info and prints it
             String info = "";
             while (rs.next()) {
             	st.setStudent_id(rs.getInt(1));
@@ -189,6 +188,7 @@ public class studentSearchFrame extends javax.swing.JFrame {
         }
     }
 
+    // goes to exam entry window and closes current
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
     		ExamEntry f0 = new ExamEntry();
     	    f0.setVisible(true);
@@ -196,6 +196,7 @@ public class studentSearchFrame extends javax.swing.JFrame {
       
     }
 
+    //closes current window and returns to previous window
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
     	Options options = new Options();
         options.setVisible(true);
@@ -230,7 +231,7 @@ public class studentSearchFrame extends javax.swing.JFrame {
         });
     }
 
-  
+    //Variables Declaration
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonSearch;

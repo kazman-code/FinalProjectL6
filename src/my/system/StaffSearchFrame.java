@@ -1,10 +1,7 @@
-
 package my.system;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 
 public class StaffSearchFrame extends javax.swing.JFrame {
 
@@ -117,22 +114,20 @@ public class StaffSearchFrame extends javax.swing.JFrame {
         pack();
     }
 
+    //Search for a staff member
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {
-         Staff s = new Staff(jTextFieldStaffName.getText());
-
-        
+         Staff s = new Staff(jTextFieldStaffName.getText());       
 
         try {
            
         	Connection conn = DatabaseConnection.getConnection();
-
              PreparedStatement prest;
 
             String sql = "SELECT * FROM staff WHERE first_name LIKE  ?";
             prest = conn.prepareStatement(sql);
             prest.setString(1, s.getFirst_name()+"%" );
             ResultSet rs = prest.executeQuery();
-
+            //gets staff info and prints it to text area
             String info = "";
             while (rs.next()) {
                 System.out.println("");
@@ -166,6 +161,7 @@ public class StaffSearchFrame extends javax.swing.JFrame {
         
     }
 
+    //returns to previous window and closes current window
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
     	 	Options options = new Options();
     	    options.setVisible(true);
@@ -200,7 +196,7 @@ public class StaffSearchFrame extends javax.swing.JFrame {
         });
     }
 
-    
+    //Variables Declaration
     private javax.swing.JButton backButton;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabelStaffName;

@@ -157,7 +157,7 @@ public class Options extends javax.swing.JFrame {
 
         pack();
     }
-
+    //Options to open search pages, update pages, and exam entry page
     private void jButtonStaffSearchActionPerformed(java.awt.event.ActionEvent evt) {
         StaffSearchFrame f0 = new StaffSearchFrame();
         f0.setVisible(true);
@@ -192,13 +192,12 @@ public class Options extends javax.swing.JFrame {
         this.dispose();
     }
   
-
+    //Variables Declaration
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonStaffSearch;
     private javax.swing.JButton jButtonStaffUpdate;
     private javax.swing.JButton jButtonStudentSearch;
-    private javax.swing.JButton jButtonStudentUpdate;
-    
+    private javax.swing.JButton jButtonStudentUpdate;    
     private javax.swing.JLabel jLabelGrade;
     private javax.swing.JLabel jLabelSearch;
     private javax.swing.JLabel jLabelUpdate;

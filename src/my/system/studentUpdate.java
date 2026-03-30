@@ -3,18 +3,16 @@ package my.system;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 
-public class studentUpdate extends javax.swing.JFrame {
-         
+public class studentUpdate extends javax.swing.JFrame {      
 
     
     public studentUpdate() {
@@ -268,6 +266,7 @@ public class studentUpdate extends javax.swing.JFrame {
         pack();
     }
 
+    //Deletes a student
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         Student st = new Student(jTextFieldStudentName.getText());
 
@@ -284,7 +283,7 @@ public class studentUpdate extends javax.swing.JFrame {
             	Connection conn = DatabaseConnection.getConnection();
 
                 PreparedStatement prest;
-
+                //sql command
                 String sql = "DELETE FROM student WHERE student_id= ?";
 
                 prest = conn.prepareStatement(sql);
@@ -294,9 +293,7 @@ public class studentUpdate extends javax.swing.JFrame {
                 System.out.println("Number of deleted records: " + del);
                 
                 JOptionPane.showMessageDialog(this, "Student deleted successfully.");
-                clearForm();
-
-                
+                clearForm();               
 
                 prest.close();
 
@@ -308,6 +305,7 @@ public class studentUpdate extends javax.swing.JFrame {
         }
     }
 
+    //adds a student to the database
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {
     	if (!validateFields()) {
     	    return; // Stop Add if validation fails
@@ -368,13 +366,15 @@ public class studentUpdate extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-
+    
+    //returns to previous window and closes current window
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {
     	Options opt = new Options();
     	opt.setVisible(true);
     	dispose();
     }
 
+    //searches for a student
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {
         Student st = new Student(jTextFieldStudentName.getText());
 
@@ -430,6 +430,7 @@ public class studentUpdate extends javax.swing.JFrame {
         }
     }
 
+    //updates student information
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {
     	if (!validateFields()) {
     	    return;
@@ -490,11 +491,12 @@ public class studentUpdate extends javax.swing.JFrame {
 
     }
     
+    //clears all fields
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {                                             
         clearForm();
     }
 
-    
+    //code to clear fields
     private void clearForm() {
         jTextFieldStudentID.setText("");
         jTextFieldFirstName.setText("");
@@ -510,6 +512,7 @@ public class studentUpdate extends javax.swing.JFrame {
         jComboBoxClassCode.setSelectedIndex(0);
     }
     
+    //validation
     private boolean validateFields() {
 
         // Required fields
@@ -603,11 +606,11 @@ public class studentUpdate extends javax.swing.JFrame {
     }
 }
 
-   
+   //Declaration of Variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonSearch;
+    private javax.swing.JButton jButtonSearch;    
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JComboBox<String> jComboBoxClassCode;
     private javax.swing.JLabel jLabelAddressLine1;

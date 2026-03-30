@@ -9,6 +9,7 @@ package my.system;
  * @author 35387
  */
 public class Student extends Person {
+	//holds information unique to students
     
     private int student_id;
 

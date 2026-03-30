@@ -29,7 +29,7 @@ private Student currentStudent;
     @SuppressWarnings("unchecked")
   
     private void initComponents() {
-
+    	//initialises components
         jComboBoxModule = new javax.swing.JComboBox<>();
         jTextFieldAssignment1 = new javax.swing.JTextField();
         jTextFieldAssignment2 = new javax.swing.JTextField();
@@ -44,7 +44,8 @@ private Student currentStudent;
         jButtonSearch = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
-
+        
+        //closes window when moving to another window
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextFieldAssignment1.addActionListener(new java.awt.event.ActionListener() {
@@ -201,21 +202,21 @@ private Student currentStudent;
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {                                           
 
-        //VALIDATION
+        //validation
 
-        // 1. Student must be selected
+        //Student is selected
         if (currentStudent == null || currentStudent.getStudent_id() == 0) {
             JOptionPane.showMessageDialog(this, "Please search for a student first.");
             return;
         }
 
-        // 2. Module must be selected
+        //Module is selected
         if (jComboBoxModule.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(this, "Please select a module.");
             return;
         }
 
-        // 3. Fields must not be empty
+        //Fields must not be empty
         if (jTextFieldAssignment1.getText().trim().isEmpty() ||
             jTextFieldAssignment2.getText().trim().isEmpty() ||
             jTextFieldExam.getText().trim().isEmpty()) {
@@ -224,7 +225,7 @@ private Student currentStudent;
             return;
         }
 
-        // 4. Fields must be numeric
+        //Fields must be numeric
         double assignment_1, assignment_2, exam;
 
         try {
@@ -252,7 +253,7 @@ private Student currentStudent;
             return;
         }
 
-        // END OF VALIDATION
+        //end of validation
 
 
         // Calculate overall result
@@ -271,7 +272,7 @@ private Student currentStudent;
             ResultSet checkRs = checkPrest.executeQuery();
 
             if (checkRs.next()) {
-                // UPDATE existing record
+                //update existing record
                 String updateSql = "UPDATE assessment SET assignment_1 = ?, assignment_2 = ?, exam = ?, result = ? "
                         + "WHERE student_id = ? AND module_name = ?";
 
@@ -289,7 +290,7 @@ private Student currentStudent;
                 updatePrest.close();
 
             } else {
-                // INSERT new record
+                // insert new record
                 String insertSql = "INSERT INTO assessment (assignment_1, assignment_2, exam, result, module_name, student_id) "
                         + "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -316,7 +317,7 @@ private Student currentStudent;
             JOptionPane.showMessageDialog(this, "Error saving assessment.");
         }
 
-        // Refresh the student info panel
+        //Refresh the student info panel
         jButtonSearchActionPerformed(null);
     }
     private void jTextFieldStudentNameActionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,7 +468,7 @@ private Student currentStudent;
         jComboBoxModule.setSelectedIndex(-1);
     }
 
-  
+    //variables declaration
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox<String> jComboBoxModule;

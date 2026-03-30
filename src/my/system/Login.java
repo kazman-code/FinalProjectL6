@@ -11,8 +11,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Login extends javax.swing.JFrame {
 	private int attempts = 0;
-
-
    
     public Login() {
         initComponents();
@@ -31,6 +29,7 @@ public class Login extends javax.swing.JFrame {
         jLabelExamEntry = new javax.swing.JLabel();
         jLabelSearch = new javax.swing.JLabel();
 
+        //closes current window on close
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonLogin.setText("Login");
@@ -88,7 +87,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
     
     
 
@@ -118,7 +117,7 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-    
+    //checkbox for showing and hiding password
     private void setupShowPassword() {
     	jCheckBoxShowPassword.addActionListener(e -> {
             if (jCheckBoxShowPassword.isSelected()) {
@@ -132,15 +131,9 @@ public class Login extends javax.swing.JFrame {
    
    
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -157,7 +150,7 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -167,7 +160,7 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabelExamEntry;
     private javax.swing.JLabel jLabelSearch;

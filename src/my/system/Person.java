@@ -9,6 +9,7 @@ package my.system;
  * @author 35387
  */
 public class Person {
+	//holds information that staff and student need
     String first_name;
 
     private String surname;
