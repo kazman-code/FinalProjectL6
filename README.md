@@ -65,6 +65,7 @@ The project allows users to:
 
   5. Run the application
   Launch any of the main GUI screens, like StaffSearchFrame.java or studentSearchFrame.java
+   Password is root in login frame
 
 ## AI Acknowledgment
 - **Copilot**: Used for debugging Java Swing Logic, and identifying an issue in an update method and improving ID search 
